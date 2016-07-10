@@ -29,14 +29,6 @@ class ScreenManagement(ScreenManager):
         button is clicked...it prepares everything for
         the game to begin...'''
         
-        '''below,there are two list variables holding all the
-        keys of the of color_dict variable which are color names
-        and the vlues which are color hex codes...
-        the game picks each color code and color name @ random
-        and uses the color name to check against the color the 
-        person entered to make sure it is the code picked 
-        to paint the text given...'''
-        
         self.color_dict = ({"darkgreen":"#006400",
             "grey":"#bebebe",
             "gold":"#ffd700","green":"#00ee00",
