@@ -1,0 +1,292 @@
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+
+<ScreenManagement>:
+    transition:FadeTransition()
+
+
+
+    Screen:
+        name: "main"
+        Image:
+            source: "two.jpg"
+            size: root.size
+            allow_stretch: True
+
+
+        Label:
+            id: screen_one_label
+            text: "[color=#FFFFFF]Welcome abord!.\nThis is a fun game of colors and typing i call color-fast. You are presented with random texts, each with different colors and you have to type the color the text appears in. Be fast cus you have 90 seconds. You get 3 points for each success. Be the fastest typer,the highest scorer..How well do you know colors ?...Have fun[/color]"
+            markup: True
+            halign: "center"
+            size_hint: None,None
+            font_size: 27
+            text_size: root.width, None
+            size: self.texture_size
+            width: root.width
+            bold: True
+            pos:0,root.top-self.height*1.2
+
+        Button:
+            id: go_button
+            text: "start game"
+            font_size: 35
+            size_hint: None,None
+            width: root.width/2
+            height: 80
+            bold: True
+            pos: root.width/4,screen_one_label.height*2
+            on_release: root.play_game()
+
+        Label:
+            text: "[color=#7fffd4]game by vitriol[/color]"
+            markup: True
+            halign: "center"
+            font_size: 25
+            width: root.width
+            height: 45
+            size_hint: None,None
+            pos: 0,0
+            
+
+            # main screen ends here...
+            #################*#############
+            ###############################
+            # game screen begins below...
+
+
+
+    Screen:
+        name: "game_screen"
+
+        Label:
+            id: game_label
+            text: "[color=#68F94A]COLOR-FAST[/color]"
+            markup: True
+            halign: "center"
+            size_hint: None,None
+            font_size: 45
+            width: root.width
+            height: 60
+            bold: True
+            pos: 0,root.top-self.height*1.3
+
+            Label:
+                text: "[color=#58D3D5]Type the color of the text below[/color]"
+                markup: True
+                size_hint: None,None
+                font_size: 30
+                halign: "center"
+                width: root.width
+                height: 50
+                bold: True
+                pos: 0,root.top-game_label.height*2
+
+
+            Label:
+                id: your_score
+                text: "[color=#ffff00]your score[/color]"
+                markup: True
+                font_size: 40
+                bold: True
+                size_hint: None,None
+                width: root.width/2
+                height: 40
+                pos: 0,root.top-game_label.height*3
+
+
+            Label:
+                id: time_left
+                text: "[color=#ffff00]time left[/color]"
+                markup: True
+                font_size: 40
+                bold: True
+                size_hint: None,None
+                width: root.width/2
+                height: 40
+                pos: root.width/2,root.top-game_label.height*3
+
+
+            Label:
+                id: score
+                text: "00"
+                markup: True
+                font_size: 50
+                bold: True
+                size_hint: None,None
+                width: root.width/2
+                height: 45
+                pos: 0,root.top-game_label.height*4
+	                             
+                
+            Label:
+                id: seconds_left
+                text: "00"
+                markup: True
+                font_size: 50
+                bold: True
+                size_hint: None,None
+                width: root.width/2
+                height: 45
+                pos: root.width/2,root.top-game_label.height*4
+	                             
+                
+            Label:
+                id: current_text
+                text: "....."
+                markup: True
+                halign: "center"
+                font_size: 60
+                bold: True
+                size_hint: None,None
+                width: root.width
+                height: 70
+                pos: 0,root.top-game_label.height*6
+
+
+            TextInput:
+                id: color_name_box
+                hint_text: ""
+                size_hint: None,None
+                font_size: 30
+                padding: root.height/self.height
+                pos: root.width/4,root.top-game_label.height*7.3
+                width: root.width/2
+                height: 75
+                bold: True
+                multiline: False
+                on_text_validate: root.check_color()
+            
+
+            Button:
+                id: submit_button
+                text: "submit"
+                font_size: 35
+                size_hint: None,None
+                width: root.width/2
+                height: 80
+                bold: True
+                pos: root.width/4,root.top-game_label.height*9
+                on_release: root.check_color()
+
+
+            Label:
+                text: "[color=#7fffd4]game by vitriol[/color]"
+                markup: True
+                halign: "center"
+                font_size: 25
+                width: root.width
+                height: 45
+                size_hint: None,None
+                pos: 0,0
+
+
+
+            # game screen ends here....
+            ##################################
+            ##################################
+            # game over screen begins below...
+
+
+    Screen:
+        name: "game_over"
+
+        Label:
+            id: game_over_text
+            text: "GAME OVER !"
+            markup: True
+            halign: "center"
+            font_size: 50
+            bold: True
+            size_hint: None,None
+            width: root.width
+            height: 70
+            pos: 0,root.top-self.height*2
+
+
+            Label:
+                id: final_score_text
+                text: "your score:"
+                markup: True
+                halign: "center"
+                font_size: 40
+                bold: True
+                size_hint: None,None
+                width: root.width/2
+                height: 70
+                pos: 0,root.top-self.height*4
+
+
+            Label:
+                id: score_text
+                text: "....."
+                markup: True
+                halign: "center"
+                font_size: 40
+                bold: True
+                size_hint: None,None
+                width: root.width/2
+                height: 70
+                pos: root.width/4,root.top-self.height*4
+
+
+            Button:
+                id: play_again_button
+                text: "play again"
+                font_size: 35
+                size_hint: None,None
+                width: root.width/2
+                height: 80
+                bold: True
+                pos: root.width/4,root.top-game_label.height*8
+                on_release: root.play_game()
+
+
+            Button:
+                id: go_home_button
+                text: "go home"
+                font_size: 35
+                size_hint: None,None
+                width: root.width/2
+                height: 80
+                bold: True
+                pos: root.width/4,root.top-game_label.height*10
+                on_release: root.goto_home()
+
+
+            Button:
+                id: quit_button
+                text: "quit"
+                font_size: 35
+                size_hint: None,None
+                width: root.width/2
+                height: 80
+                bold: True
+                pos: root.width/4,root.top-game_label.height*12
+                on_release: root.quit_game()
+
+
+            Label:
+                text: "[color=#7fffd4]game by vitriol[/color]"
+                markup: True
+                halign: "center"
+                font_size: 25
+                width: root.width
+                height: 45
+                size_hint: None,None
+                pos: 0,0
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
