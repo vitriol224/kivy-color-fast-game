@@ -194,7 +194,7 @@ class ScreenManagement(ScreenManager):
     def check_color(self):
         ''' this method is called each thw submit button is called
         during play '''
-    
+        
         self.submitted_color = self.ids.color_name_box.text
         #get the text submitted by player...
         
@@ -231,33 +231,22 @@ class ScreenManagement(ScreenManager):
                     .format(self.initial_color_hex,self.initial_name))
                 #display the random name painted with the random color
                     
-            else:
+        except:
             
+            if self.submitted_color2.text == "":
+            	    pass
+            else:
                 self.submitted_color2.text = ""
-                
+        
                 self.initial_color_hex = random.choice(self.dict_values)
-                
+            
                 self.initial_name = random.choice(self.name_list)
         
                 self.the_text.text = ("[color={}] {} [/color]"
                     .format(self.initial_color_hex,self.initial_name))
-                    
-                '''if the user entered color doesnt match,still wipe
-                the text box and display a new random text and color''' 
- 
-        except:
-        
-            self.submitted_color2.text = ""
-        
-            self.initial_color_hex = random.choice(self.dict_values)
-            
-            self.initial_name = random.choice(self.name_list)
-        
-            self.the_text.text = ("[color={}] {} [/color]"
-                .format(self.initial_color_hex,self.initial_name))
                 
-            '''continue the game and wipe the text box,pick and display
-            a new name and color even though key error is encountered'''
+                '''continue the game and wipe the text box,pick and display
+                a new name and color even though key error is encountered'''
             
                     
 
