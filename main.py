@@ -6,7 +6,9 @@
 
 from kivy.app import App
 from kivy.uix.widget import Widget 
+from kivy.uix.popup import Popup
 from kivy.uix.label import Label
+from kivy.uix.button import Button
 from kivy.uix.screenmanager import ScreenManager,Screen 
 from kivy.uix.screenmanager import FadeTransition
 from kivy.lang import Builder
@@ -20,7 +22,7 @@ Builder.load_file("color-fast.kv")
 
 
     
-class ScreenManagement(ScreenManager):
+class ScreenManagement(ScreenManager,Widget):
     
     
     def play_game(self):
@@ -223,6 +225,22 @@ class ScreenManagement(ScreenManager):
                     .format(self.initial_color_hex,self.initial_name))
                 #display the random name painted with the random color
                     
+            else:
+                if self.submitted_color2.text == "":
+            	        pass
+                else:
+                    self.submitted_color2.text = ""
+        
+                    self.initial_color_hex = random.choice(self.dict_values)
+            
+                    self.initial_name = random.choice(self.name_list)
+        
+                    self.the_text.text = ("[color={}] {} [/color]"
+                        .format(self.initial_color_hex,self.initial_name))
+                
+                    '''continue the game and wipe the text box,pick and display
+                    a new name and color even though the user entered a wrong color'''
+                                                
         except:
             
             if self.submitted_color2.text == "":
