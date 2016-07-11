@@ -141,7 +141,7 @@
                 size_hint: None,None
                 width: root.width
                 height: 70
-                pos: 0,root.top-game_label.height*6
+                pos: 0,root.top-game_label.height*5.9
 
 
             TextInput:
@@ -263,7 +263,7 @@
                 height: 80
                 bold: True
                 pos: root.width/4,root.top-game_label.height*12
-                on_release: root.quit_game()
+                on_release: root.confirm_quit()
 
 
             Label:
