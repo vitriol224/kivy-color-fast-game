@@ -5,7 +5,6 @@
 
 
 from kivy.app import App
-from kivy.uix.widget import Widget 
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from kivy.uix.button import Button
@@ -23,7 +22,7 @@ Builder.load_file("color-fast.kv")
 
 
     
-class ScreenManagement(ScreenManager,Widget):
+class ScreenManagement(ScreenManager):
     
     
     def play_game(self):
@@ -288,15 +287,15 @@ class ScreenManagement(ScreenManager,Widget):
         self.main_pop = Popup(title="QUIT GAME ?",content=self.box,
         	size_hint=(.8,.5),auto_dismiss=False,title_size=25)
         	
-        self.but.bind(on_press=self.main_pop.dismiss)
-        #self.but2.bind(on_press=self.quit_game)
+        self.but.bind(on_release=self.main_pop.dismiss)
+        self.but2.bind(on_release=self.quit_game)
         
         self.main_pop.open()
 
     ##############################################
         
 
-    
+    @staticmethod
     def quit_game(self):
         exit()
         #close the application...
